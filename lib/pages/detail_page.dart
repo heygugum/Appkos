@@ -1,38 +1,53 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, unused_element
 
 import 'package:flutter/material.dart';
+import 'package:latihan1/models/space.dart';
+import 'package:latihan1/pages/erroe.dart';
 // import 'package:latihan1/pages/eror_page.dart';
 import 'package:latihan1/theme.dart';
 import 'package:latihan1/widgets/fasility_main.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({Key? key}) : super(key: key);
+   final Space space;
+
+  DetailPage(this.space);
 
   @override
   Widget build(BuildContext context) {
-    launchUrl(url) async {
-      if (await canLaunch(url)) {
-        launch(url);
-      } else {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => ErorPage(),
-        //   ),
-        // );
+    // launchUrl(url) async {
+    //   if (await canLaunch(url)) {
+    //     launch(url);
+    //   } else {
+    //     // Navigator.push(
+    //     //   context,
+    //     //   MaterialPageRoute(
+    //     //     builder: (context) => ErorPage(),
+    //     //   ),
+    //     // );
 
-        throw (url);
-      }
-    }
+    //     throw (url);
+    //   }
+    // }
+      // add me
+    launchUrl(url) async => await canLaunch(url)
+        ? await launch(url)
+        // throw
+        : Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ErrorPage(),
+            ),
+          );
 
     return Scaffold(
       body: SafeArea(
         bottom: false,
         child: Stack(
           children: [
-            Image.asset(
-              'assets/images/image3.png',
+              // add me
+            Image.network(
+             space.imageUrl,
               width: MediaQuery.of(context).size.width,
               height: 320,
               fit: BoxFit.cover,

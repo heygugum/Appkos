@@ -18,8 +18,9 @@ class SpaceCardd extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
+            // add me
           MaterialPageRoute(
-            builder: (context) => DetailPage(),
+            builder: (context) => DetailPage(space),
           ),
         );
       },
@@ -32,7 +33,8 @@ class SpaceCardd extends StatelessWidget {
               height: 110,
               child: Stack(
                 children: [
-                  Image.asset(space.imageUrl),
+                    // add me
+                  Image.network(space.imageUrl),
                   Align(
                     alignment: Alignment.topRight,
                     child: Container(

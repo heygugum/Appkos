@@ -18,7 +18,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var spaceProvider = Provider.of<SpaceProvider>(context);
-    SpaceProvider.getRecommendedSpaces();
+
+    // SpaceProvider.getRecommendedSpaces();
 
     return Scaffold(
       body: SafeArea(
@@ -126,7 +127,9 @@ class HomePage extends StatelessWidget {
                   horizontal: edge,
                 ),
                 child: FutureBuilder(
-                  future: SpaceProvider.getRecommendedSpaces(),
+                  // future: SpaceProvider.getRecommendedSpaces(),
+                  // add me
+                  future: spaceProvider.getRecommendedSpaces(),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       List<Space> data = snapshot.data ?? [];
@@ -137,10 +140,10 @@ class HomePage extends StatelessWidget {
                         children: data.map((item) {
                           index++;
                           return Container(
+                            child: SpaceCardd(item),
                             margin: EdgeInsets.only(
                               top: index == 1 ? 0 : 30,
                             ),
-                            child: SpaceCardd(item),
                           );
                         }).toList(),
                       );
